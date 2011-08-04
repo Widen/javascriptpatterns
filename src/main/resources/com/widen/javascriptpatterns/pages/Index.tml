@@ -1,0 +1,18 @@
+<html t:type="layout" title="Structural JavaScript Patterns"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+
+	<img id="dancingmoosenbeaver" src="${context:img/moosenbeaverdancing.gif}" style="position: absolute;" />
+	<img id="green-ball" src="${context:img/green_ball.gif}" style="position: absolute;" />
+
+	<img id="moosenbeaver" src="${context:img/moosenbeaver.gif}" style="position: absolute; left: 500px" />
+
+
+	<!-- Uncomment this section to try module-multiple-instances.js -->
+
+	<!--<img id="dancingmoosenbeaver2" src="${context:img/moosenbeaverdancing.gif}" style="position: absolute; top: 200px;" />-->
+	<!--<img id="green-ball2" src="${context:img/green_ball.gif}" style="position: absolute; top: 200px;" />-->
+
+	<!--<img id="moosenbeaver2" src="${context:img/moosenbeaver.gif}" style="position: absolute; left: 500px; top: 200px;" />-->
+
+</html>
