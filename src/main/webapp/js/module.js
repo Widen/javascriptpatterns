@@ -3,13 +3,6 @@ var BallGame = function() {
 	var greenBall;
 	var mbWithBall;
 
-	function throwBall() {
-		var moveXBy = mbWithBall.offsetLeft - greenBall.offsetLeft;
-		var moveYBy = mbWithBall.offsetTop - greenBall.offsetTop;
-
-		new Effect.Move(greenBall, {x: moveXBy, y: moveYBy, duration: 1});
-	}
-
 	function moveBeaverNBall(event) {
 		var moveXBy = event.clientX - mbWithBall.offsetLeft;
 		var moveYBy = event.clientY - mbWithBall.offsetTop;
@@ -21,15 +14,13 @@ var BallGame = function() {
 	function handleClick(event) {
 		var eventElement = Event.element(event);
 
-		if (eventElement.id === config.dancingId && mbWithBall.id !== config.dancingId) {
-			mbWithBall = $(config.dancingId);
-			throwBall();
+		if ('A' === eventElement.tagName) {
 			return;
 		}
 
-		if (eventElement.id === config.nonDancingId && mbWithBall.id !== config.nonDancingId) {
-			mbWithBall = $(config.nonDancingId);
-			throwBall();
+		if ((eventElement.id === config.dancingId && mbWithBall.id !== config.dancingId) ||
+			(eventElement.id === config.nonDancingId && mbWithBall.id !== config.nonDancingId)) {
+			BallGame.throwBall();
 			return;
 		}
 
@@ -49,6 +40,20 @@ var BallGame = function() {
 			document.observe('click', function(event) {
 				handleClick(event);
 			});
+		},
+
+		throwBall : function() {
+			if (mbWithBall.id === config.dancingId) {
+				mbWithBall = $(config.nonDancingId);
+			}
+			else {
+				mbWithBall = $(config.dancingId);
+			}
+
+			var moveXBy = mbWithBall.offsetLeft - greenBall.offsetLeft;
+			var moveYBy = mbWithBall.offsetTop - greenBall.offsetTop;
+
+			new Effect.Move(greenBall, {x: moveXBy, y: moveYBy, duration: 1});
 		}
 	}
 }();

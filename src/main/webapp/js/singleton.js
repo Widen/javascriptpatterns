@@ -4,31 +4,36 @@ var BallGame = {
 	mbWithBall : undefined,
 
 	throwBall : function() {
-		var moveXBy = mbWithBall.offsetLeft - greenBall.offsetLeft;
-		var moveYBy = mbWithBall.offsetTop - greenBall.offsetTop;
+		if (BallGame.mbWithBall.id === BallGame.config.dancingId) {
+			BallGame.mbWithBall = $(BallGame.config.nonDancingId);
+		}
+		else {
+			BallGame.mbWithBall = $(BallGame.config.dancingId);
+		}
 
-		new Effect.Move(greenBall, {x: moveXBy, y: moveYBy, duration: 1});
+		var moveXBy = BallGame.mbWithBall.offsetLeft - BallGame.greenBall.offsetLeft;
+		var moveYBy = BallGame.mbWithBall.offsetTop - BallGame.greenBall.offsetTop;
+
+		new Effect.Move(BallGame.greenBall, {x: moveXBy, y: moveYBy, duration: 1});
 	},
 
 	moveBeaverNBall : function(event) {
-		var moveXBy = event.clientX - mbWithBall.offsetLeft;
-		var moveYBy = event.clientY - mbWithBall.offsetTop;
+		var moveXBy = event.clientX - BallGame.mbWithBall.offsetLeft;
+		var moveYBy = event.clientY - BallGame.mbWithBall.offsetTop;
 
-		new Effect.Move(mbWithBall, {x: moveXBy, y: moveYBy, duration: 1});
-		new Effect.Move(greenBall, {x: moveXBy, y: moveYBy, duration: 1});
+		new Effect.Move(BallGame.mbWithBall, {x: moveXBy, y: moveYBy, duration: 1});
+		new Effect.Move(BallGame.greenBall, {x: moveXBy, y: moveYBy, duration: 1});
 	},
 
 	handleClick : function(event) {
 		var eventElement = Event.element(event);
 
-		if (eventElement.id === config.dancingId && mbWithBall.id !== config.dancingId) {
-			mbWithBall = $(config.dancingId);
-			BallGame.throwBall();
+		if ('A' === eventElement.tagName) {
 			return;
 		}
 
-		if (eventElement.id === config.nonDancingId && mbWithBall.id !== config.nonDancingId) {
-			mbWithBall = $(config.nonDancingId);
+		if ((eventElement.id === BallGame.config.dancingId && BallGame.mbWithBall.id !== BallGame.config.dancingId) ||
+			(eventElement.id === BallGame.config.nonDancingId && BallGame.mbWithBall.id !== BallGame.config.nonDancingId)) {
 			BallGame.throwBall();
 			return;
 		}
@@ -37,10 +42,10 @@ var BallGame = {
 	},
 
 	init : function(conf) {
-		config = conf;
+		BallGame.config = conf;
 
-		greenBall = $(config.ballId);
-		mbWithBall = $(config.dancingId);
+		BallGame.greenBall = $(BallGame.config.ballId);
+		BallGame.mbWithBall = $(BallGame.config.dancingId);
 
 		document.observe('click', function(event) {
 			BallGame.handleClick(event);

@@ -1,36 +1,26 @@
 var BallGame = function() {
-	var ballGame = BallGame.prototype;
-
 	function BallGame(config) {
-		var greenBall = $(config.ballId);
-		var mbWithBall = $(config.dancingId);
-
-		this.throwBall = function() {
-			var moveXBy = mbWithBall.offsetLeft - greenBall.offsetLeft;
-			var moveYBy = mbWithBall.offsetTop - greenBall.offsetTop;
-
-			new Effect.Move(greenBall, {x: moveXBy, y: moveYBy, duration: 1});
-		}
+		this.config = config;
+		this.greenBall = $(config.ballId);
+		this.mbWithBall = $(config.dancingId);
 
 		this.moveBeaverNBall = function(event) {
-			var moveXBy = event.clientX - mbWithBall.offsetLeft;
-			var moveYBy = event.clientY - mbWithBall.offsetTop;
+			var moveXBy = event.clientX - this.mbWithBall.offsetLeft;
+			var moveYBy = event.clientY - this.mbWithBall.offsetTop;
 
-			new Effect.Move(mbWithBall, {x: moveXBy, y: moveYBy, duration: 1});
-			new Effect.Move(greenBall, {x: moveXBy, y: moveYBy, duration: 1});
+			new Effect.Move(this.mbWithBall, {x: moveXBy, y: moveYBy, duration: 1});
+			new Effect.Move(this.greenBall, {x: moveXBy, y: moveYBy, duration: 1});
 		}
 
 		this.handleClick = function(event) {
 			var eventElement = Event.element(event);
 
-			if (eventElement.id === config.dancingId && mbWithBall.id !== config.dancingId) {
-				mbWithBall = $(config.dancingId);
-				this.throwBall();
+			if ('A' === eventElement.tagName) {
 				return;
 			}
 
-			if (eventElement.id === config.nonDancingId && mbWithBall.id !== config.nonDancingId) {
-				mbWithBall = $(config.nonDancingId);
+			if ((eventElement.id === config.dancingId && this.mbWithBall.id !== config.dancingId) ||
+				(eventElement.id === config.nonDancingId && this.mbWithBall.id !== config.nonDancingId)) {
 				this.throwBall();
 				return;
 			}
@@ -42,7 +32,7 @@ var BallGame = function() {
 
 	///// PUBLIC API /////
 
-	ballGame.init = function() {
+	BallGame.prototype.init = function() {
 		var self = this;
 
 		document.observe('click', function(event) {
@@ -50,19 +40,37 @@ var BallGame = function() {
 		});
 	}
 
+	BallGame.prototype.throwBall = function() {
+		if (this.mbWithBall.id === this.config.dancingId) {
+			this.mbWithBall = $(this.config.nonDancingId);
+		}
+		else {
+			this.mbWithBall = $(this.config.dancingId);
+		}
+
+		var moveXBy = this.mbWithBall.offsetLeft - this.greenBall.offsetLeft;
+		var moveYBy = this.mbWithBall.offsetTop - this.greenBall.offsetTop;
+
+		new Effect.Move(this.greenBall, {x: moveXBy, y: moveYBy, duration: 1});
+	}
+
 	return BallGame;
 }();
 
+var ballgame, ballgame2;
+
 document.observe('dom:loaded', function() {
-	new BallGame({
+	ballgame = new BallGame({
 		dancingId : 'dancingmoosenbeaver',
 		nonDancingId : 'moosenbeaver',
 		ballId : 'green-ball'
-	}).init();
+	});
+	ballgame.init();
 
-	new BallGame({
+	ballgame2 = new BallGame({
 		dancingId : 'dancingmoosenbeaver2',
 		nonDancingId : 'moosenbeaver2',
 		ballId : 'green-ball2'
-	}).init();
+	});
+	ballgame2.init();
 });

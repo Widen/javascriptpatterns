@@ -3,6 +3,13 @@ var BallGame = function(config) {
 }
 
 BallGame.prototype.throwBall = function() {
+	if (this.mbWithBall.id === this.config.dancingId) {
+		this.mbWithBall = $(this.config.nonDancingId);
+	}
+	else {
+		this.mbWithBall = $(this.config.dancingId);
+	}
+
 	var moveXBy = this.mbWithBall.offsetLeft - this.greenBall.offsetLeft;
 	var moveYBy = this.mbWithBall.offsetTop - this.greenBall.offsetTop;
 
@@ -20,14 +27,12 @@ BallGame.prototype.moveBeaverNBall = function(event) {
 BallGame.prototype.handleClick = function(event) {
 	var eventElement = Event.element(event);
 
-	if (eventElement.id === this.config.dancingId && this.mbWithBall.id !== this.config.dancingId) {
-		this.mbWithBall = $(this.config.dancingId);
-		this.throwBall();
+	if ('A' === eventElement.tagName) {
 		return;
 	}
 
-	if (eventElement.id === this.config.nonDancingId && this.mbWithBall.id !== this.config.nonDancingId) {
-		this.mbWithBall = $(this.config.nonDancingId);
+	if ((eventElement.id === this.config.dancingId && this.mbWithBall.id !== this.config.dancingId) ||
+		(eventElement.id === this.config.nonDancingId && this.mbWithBall.id !== this.config.nonDancingId)) {
 		this.throwBall();
 		return;
 	}
@@ -47,8 +52,10 @@ BallGame.prototype.init = function(config) {
 	});
 }
 
+var ballgame;
+
 document.observe('dom:loaded', function() {
-	new BallGame({
+	ballgame = new BallGame({
 		dancingId : 'dancingmoosenbeaver',
 		nonDancingId : 'moosenbeaver',
 		ballId : 'green-ball'
