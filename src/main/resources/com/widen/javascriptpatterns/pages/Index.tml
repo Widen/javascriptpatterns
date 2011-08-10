@@ -7,7 +7,7 @@
 
 	<img id="moosenbeaver" src="${context:img/moosenbeaver.gif}" style="position: absolute; left: 500px" />
 
-	<a href="javascript:void(0);" onclick="throwBall()" style="position: absolute; top: 150px;">Throw It!</a>
+	<a href="javascript:void(0);" onclick="throwBall();" style="position: absolute; top: 150px;">Throw It!</a>
 
 
 	<!-- Uncomment this section to try module-multiple-instances.js -->
