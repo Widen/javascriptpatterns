@@ -367,3 +367,63 @@ a:hover {
 #footer .legal a {
     padding: 0;
 }
+
+.fLeft
+{
+    float: left;
+}
+
+.fRight
+{
+    float: right;
+}
+
+.dancing
+{
+    position: absolute;
+    left: 250px;
+    top: 200px;
+}
+
+.albino
+{
+    position: absolute;
+    left: 500px;
+    top: 100px;
+}
+
+.ball
+{
+    position: absolute;
+    left: 250px;
+    top: 200px;
+}
+
+.endzone
+{
+    width: 200px;
+    height: 400px;
+    background-color: black;
+}
+
+.endzone-text
+{
+    color: white;
+    padding: 120px 0 0 95px;
+}
+
+.scores
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+}
+
+.score
+{
+    float: left;
+    border: solid black 2px;
+    padding: 10px;
+    margin: 10px;
+    width: 250px;
+}
