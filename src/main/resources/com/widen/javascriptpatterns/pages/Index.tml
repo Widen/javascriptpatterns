@@ -2,22 +2,23 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
       xmlns:p="tapestry:parameter">
 
-	<img id="dancingmoosenbeaver" src="${context:img/moosenbeaverdancing.gif}" class="dancing" />
-	<img id="green-ball" src="${context:img/green_ball.gif}" class="ball" />
+    <div id="field">
+        <img id="dancingmoosenbeaver" src="${context:img/moosenbeaverdancing.gif}" class="dancing" />
+        <img id="green-ball" src="${context:img/green_ball.gif}" class="ball" />
 
-	<img id="moosenbeaver" src="${context:img/moosenbeaver.gif}" class="albino" />
+        <img id="moosenbeaver" src="${context:img/moosenbeaver.gif}" class="albino" />
 
-    <div class="endzone fLeft">
-        <div class="endzone-text"><b>E<br />N<br />D<br />Z<br />O<br />N<br />E</b></div>
+        <div class="endzone fLeft">
+            <div class="endzone-text"><b>E<br />N<br />D<br />Z<br />O<br />N<br />E</b></div>
+        </div>
+
+        <div class="endzone fRight">
+            <div class="endzone-text"><b>E<br />N<br />D<br />Z<br />O<br />N<br />E</b></div>
+        </div>
+        <br clear="both" />
     </div>
 
-    <div class="endzone fRight">
-        <div class="endzone-text"><b>E<br />N<br />D<br />Z<br />O<br />N<br />E</b></div>
-    </div>
-
-    <br clear="both" />
-
-    <div class="scores">
+    <div id="scores">
         <div class="score">
             <h1>Dancing Beaver</h1>
             <b>Score: 0</b>
@@ -27,12 +28,5 @@
             <b>Score: 0</b>
         </div>
     </div>
-
-	<!-- Uncomment this section to try module-multiple-instances.js -->
-
-	<!--<img id="dancingmoosenbeaver2" src="${context:img/moosenbeaverdancing.gif}" style="position: absolute; top: 200px;" />-->
-	<!--<img id="green-ball2" src="${context:img/green_ball.gif}" style="position: absolute; top: 200px;" />-->
-
-	<!--<img id="moosenbeaver2" src="${context:img/moosenbeaver.gif}" style="position: absolute; left: 500px; top: 200px;" />-->
 
 </html>
