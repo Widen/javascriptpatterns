@@ -3,10 +3,10 @@
       xmlns:p="tapestry:parameter">
 
     <div id="field">
-        <img id="dancingmoosenbeaver" src="${context:img/moosenbeaverdancing.gif}" class="dancing" />
+        <img id="dancingbeaver" src="${context:img/moosenbeaverdancing.gif}" class="dancing" />
         <img id="green-ball" src="${context:img/green_ball.gif}" class="ball" />
 
-        <img id="moosenbeaver" src="${context:img/moosenbeaver.gif}" class="albino" />
+        <img id="albinobeaver" src="${context:img/moosenbeaver.gif}" class="albino" />
 
         <div class="endzone fLeft">
             <div class="endzone-text"><b>E<br />N<br />D<br />Z<br />O<br />N<br />E</b></div>
@@ -18,15 +18,28 @@
         <br clear="both" />
     </div>
 
-    <div id="scores">
+    <script id="score-template" type="text/x-handlebars-template">
         <div class="score">
             <h1>Dancing Beaver</h1>
-            <b>Score: 0</b>
+            <b>Score: {{dancingscore}}</b>
         </div>
         <div class="score">
             <h1>Albino Beaver</h1>
-            <b>Score: 0</b>
+            <b>Score: {{albinoscore}}</b>
         </div>
-    </div>
+    </script>
+
+    <div id="scores"></div>
+
+    <script id="crowd-template" type="text/x-handlebars-template">
+        <img style="right: 50px; bottom: 50px;" class="person" src="${context:img/c.png}" />
+        <img style="right: 250px; bottom: 40px;" class="person" src="${context:img/dk.png}" />
+        <img style="right: 180px; bottom: 120px;" class="person" src="${context:img/u.png}" />
+        {{#if showText}}
+            <h1 class="wild-text"><blink>THE CROWD GOES WILD</blink></h1>
+        {{/if}}
+    </script>
+
+    <div id="crowd"></div>
 
 </html>

@@ -18,6 +18,7 @@ public class JsStack implements JavaScriptStack
 
 		assets.add("${js-library-root}/jquery-${jquery-version}.js");
 		assets.add("${js-library-root}/jquery-init.js");
+		assets.add("${js-library-root}/jquery-ui-${jquery-ui-version}.custom.js");
 		assets.add("${js-library-root}/underscore.js");
 		assets.add("${js-library-root}/backbone.js");
 		assets.add("${js-library-root}/handlebars-${handlebars-version}.js");

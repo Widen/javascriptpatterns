@@ -427,3 +427,22 @@ a:hover {
     margin: 10px;
     width: 250px;
 }
+
+#crowd
+{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.wild-text
+{
+    color: red;
+    font-weight: bold;
+}
+
+.person
+{
+    padding: 20px;
+    position: absolute;
+}
