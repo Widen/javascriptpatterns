@@ -1,4 +1,4 @@
-<html t:type="layout" title="Structural JavaScript Patterns"
+<html t:type="layout" title="Backbone &amp; Handlebars Demo"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
       xmlns:p="tapestry:parameter">
 
