@@ -11,7 +11,8 @@ public class JsModule
 	{
 		configuration.add("jquery-version", "1.7.2");
 		configuration.add("jquery-ui-version", "1.8.18");
-		configuration.add("handlebars-version", "1.0.0.beta.6");
+
+		configuration.add("dust-version", "0.3.0");
 
 		configuration.add("js-library-root", "context:js/library");
 	}

@@ -1,4 +1,4 @@
-<html t:type="layout" title="Backbone &amp; Handlebars Demo"
+<html t:type="layout" title="Backbone &amp; Dust Demo"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
       xmlns:p="tapestry:parameter">
 
@@ -18,26 +18,26 @@
         <br clear="both" />
     </div>
 
-    <script id="score-template" type="text/x-handlebars-template">
+    <script id="score-template" type="text/x-dust-template">
         <div class="score">
             <h1>Dancing Beaver</h1>
-            <b>Score: {{dancingscore}}</b>
+            <b>Score: {dancingscore}</b>
         </div>
         <div class="score">
             <h1>Albino Beaver</h1>
-            <b>Score: {{albinoscore}}</b>
+            <b>Score: {albinoscore}</b>
         </div>
     </script>
 
     <div id="scores"></div>
 
-    <script id="crowd-template" type="text/x-handlebars-template">
+    <script id="crowd-template" type="text/x-dust-template">
         <img style="right: 50px; bottom: 50px;" class="person" src="${context:img/c.png}" />
         <img style="right: 250px; bottom: 40px;" class="person" src="${context:img/dk.png}" />
         <img style="right: 180px; bottom: 120px;" class="person" src="${context:img/u.png}" />
-        {{#if showText}}
+        {?showText}
             <h1 class="wild-text"><blink>THE CROWD GOES WILD</blink></h1>
-        {{/if}}
+        {/showText}
     </script>
 
     <div id="crowd"></div>

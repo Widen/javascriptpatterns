@@ -7,20 +7,23 @@ $j(function() {
 		},
 		compileTemplate : function() {
 			var templateSource = $j('#crowd-template').html();
-			this.template = Handlebars.compile(templateSource);
+			var template = dust.compile(templateSource, 'crowd');
+			dust.loadSource(template);
 		},
 		render : function() {
 			var exciting = Math.random() < .5;
-			var html = this.template({ showText : exciting });
 			var el = this.el;
 			el.hide();
-			$j(el).html(html).show();
-			if (exciting) {
-				$j('.person').each(function(idx, person) {
-					$j(person).effect('shake', { direction : 'up', times : Math.random() * 5 }, Math.random() * 200);
+			dust.render('crowd', { showText : exciting },
+				function(err, out) {
+					$j(el).html(out).show();
+					if (exciting) {
+						$j('.person').each(function(idx, person) {
+							$j(person).effect('shake', { direction : 'up', times : Math.random() * 5 }, Math.random() * 200);
+						});
+					}
+					setTimeout(function() { el.hide(); }, 2000);
 				});
-			}
-			setTimeout(function() { el.hide(); }, 2000);
 		}
 	});
 });

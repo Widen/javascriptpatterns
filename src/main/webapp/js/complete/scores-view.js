@@ -8,12 +8,16 @@ $j(function() {
 		},
 		compileTemplate : function() {
 			var templateSource = $j('#score-template').html();
-			this.template = Handlebars.compile(templateSource);
+			var template = dust.compile(templateSource, 'scores');
+			dust.loadSource(template);
 		},
 		render : function() {
-			var html = this.template({dancingscore : this.model.get('dancingScore'), albinoscore : this.model.get('albinoScore')});
-			this.el.hide();
-			$j(this.el).html(html).show();
+			var el = this.el;
+			el.hide();
+			dust.render('scores', {dancingscore : this.model.get('dancingScore'), albinoscore : this.model.get('albinoScore')},
+				function(err, out) {
+					$j(el).html(out).show();
+				});
 		}
 	});
 });
